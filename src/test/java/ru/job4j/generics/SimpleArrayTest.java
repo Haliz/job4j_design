@@ -32,8 +32,8 @@ public class SimpleArrayTest {
         SimpleArray<String> arr = new SimpleArray<>(3);
         arr.add("first");
         arr.add("second");
-        assertThat(arr.get(0), is ("first"));
-        assertThat(arr.get(1), is ("second"));
+        assertThat(arr.get(0), is("first"));
+        assertThat(arr.get(1), is("second"));
     }
 
     @Test (expected = IndexOutOfBoundsException.class)
