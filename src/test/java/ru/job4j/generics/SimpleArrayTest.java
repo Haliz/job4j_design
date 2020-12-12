@@ -12,11 +12,15 @@ import static org.junit.Assert.assertNull;
 public class SimpleArrayTest {
 
 //    public static void main(String[] args) {
-//        SimpleArray<Integer> arr = new SimpleArray<>(3);
+//        SimpleArray<Integer> arr = new SimpleArray<>(4);
 //        arr.add(1);
 //        arr.add(2);
 //        arr.add(3);
+//        arr.add(4);
 //        System.out.println(arr);
+//        arr.remove(1);
+//        System.out.println(arr);
+//
 //        Iterator<Integer> iterator = arr.iterator();
 //        while (iterator.hasNext()) {
 //            System.out.println(iterator.next());
@@ -30,7 +34,6 @@ public class SimpleArrayTest {
         arr.add("second");
         assertThat(arr.get(0), is ("first"));
         assertThat(arr.get(1), is ("second"));
-        assertNull(arr.get(2));
     }
 
     @Test (expected = IndexOutOfBoundsException.class)
@@ -60,7 +63,7 @@ public class SimpleArrayTest {
     }
 
     @Test
-    public void whenRemove() {
+    public void whenRemove1() {
         SimpleArray<Integer> arr = new SimpleArray<>(4);
         arr.add(1);
         arr.add(2);
@@ -70,6 +73,19 @@ public class SimpleArrayTest {
         assertThat(arr.get(0), is(1));
         assertThat(arr.get(1), is(3));
         assertThat(arr.get(2), is(4));
+        assertNull(arr.get(3));
+    }
+    @Test
+    public void whenRemove3() {
+        SimpleArray<Integer> arr = new SimpleArray<>(4);
+        arr.add(1);
+        arr.add(2);
+        arr.add(3);
+        arr.add(4);
+        arr.remove(3);
+        assertThat(arr.get(0), is(1));
+        assertThat(arr.get(1), is(2));
+        assertThat(arr.get(2), is(3));
         assertNull(arr.get(3));
     }
 
