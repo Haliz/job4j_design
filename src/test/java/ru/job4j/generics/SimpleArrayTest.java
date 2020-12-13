@@ -7,12 +7,11 @@ import java.util.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertNull;
 
 public class SimpleArrayTest {
 
 //    public static void main(String[] args) {
-//        SimpleArray<Integer> arr = new SimpleArray<>(4);
+//        SimpleArray<Integer> arr = new SimpleArray<>(7);
 //        arr.add(1);
 //        arr.add(2);
 //        arr.add(3);
@@ -73,7 +72,6 @@ public class SimpleArrayTest {
         assertThat(arr.get(0), is(1));
         assertThat(arr.get(1), is(3));
         assertThat(arr.get(2), is(4));
-        assertNull(arr.get(3));
     }
     @Test
     public void whenRemove3() {
@@ -86,7 +84,6 @@ public class SimpleArrayTest {
         assertThat(arr.get(0), is(1));
         assertThat(arr.get(1), is(2));
         assertThat(arr.get(2), is(3));
-        assertNull(arr.get(3));
     }
 
     @Test (expected = IndexOutOfBoundsException.class)

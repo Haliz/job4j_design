@@ -37,6 +37,7 @@ public class SimpleArray<T> implements Iterable<T> {
         checkIndex(index, cell);
             System.arraycopy(data, index + 1, data, index, cell - (index + 1));
         data[cell - 1] = null;
+        cell--;
     }
 
     @Override
