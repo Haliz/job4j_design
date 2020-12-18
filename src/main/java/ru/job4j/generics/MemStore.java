@@ -49,8 +49,4 @@ public final class MemStore<T extends Base> implements Store<T> {
         }
         return index;
     }
-
-    public List<T> getMem() {
-        return mem;
-    }
 }
