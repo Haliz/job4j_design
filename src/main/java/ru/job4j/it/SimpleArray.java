@@ -1,27 +1,28 @@
 package ru.job4j.it;
 
-import ru.job4j.generics.ArrayIterator;
-
 import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
 import static java.util.Objects.checkIndex;
 
 public class SimpleArray<T> implements Iterable<T> {
 
+    private int capacity = 2;
     private int size = 0;
     private Object[] container;
     private int modCount = 0;
 
     public SimpleArray() {
-        container = new Object[0];
+        container = new Object[capacity];
     }
 
     public void add(T model) {
-        container = Arrays.copyOf(container, ++size);
-        container[size - 1] = model;
+        if (size == capacity) {
+            capacity = size * 2;
+            container = Arrays.copyOf(container, capacity);
+        }
+        container[++size - 1] = model;
         modCount++;
     }
 
