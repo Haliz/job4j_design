@@ -22,7 +22,7 @@ public class SimpleArray<T> implements Iterable<T> {
             capacity = size * 2;
             container = Arrays.copyOf(container, capacity);
         }
-        container[++size - 1] = model;
+        container[size++] = model;
         modCount++;
     }
 
