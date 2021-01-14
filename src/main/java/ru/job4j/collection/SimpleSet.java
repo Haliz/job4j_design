@@ -1,19 +1,27 @@
 package ru.job4j.collection;
 
 import ru.job4j.it.SimpleArray;
+
 import java.util.Iterator;
+import java.util.Objects;
 
 public class SimpleSet<T> implements Iterable<T> {
     private final SimpleArray<T> simpleArray = new SimpleArray<>();
 
     public void add(T model) {
+        if (!contains(model)) {
+            simpleArray.add(model);
+        }
+    }
+
+    public boolean contains(T value) {
         Object[] container = simpleArray.getContainer();
         for (Object i : container) {
-            if (model.equals(i)) {
-                return;
+            if (Objects.equals(value, i)) {
+                return true;
             }
         }
-        simpleArray.add(model);
+        return false;
     }
 
     @Override
