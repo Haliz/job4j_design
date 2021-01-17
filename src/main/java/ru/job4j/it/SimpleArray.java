@@ -31,10 +31,6 @@ public class SimpleArray<T> implements Iterable<T> {
         return (T) container[index];
     }
 
-    public Object[] getContainer() {
-        return container;
-    }
-
     @Override
     public Iterator<T> iterator() {
         return new ArrayIterator<>();
