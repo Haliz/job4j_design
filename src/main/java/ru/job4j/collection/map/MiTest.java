@@ -12,8 +12,19 @@ public class MiTest {
     }
 
     public static void main(String[] args) {
-        System.out.println(binary(1));
-        System.out.println(binary(1 << 4));
-        System.out.println(Integer.parseInt("00010000", 2));
+        Integer h = 50;
+        h.hashCode();
+        Integer h2 = h >>> 16;
+        int r = (h.hashCode()) ^ (h >>> 16);
+        System.out.println(binary(h));
+        System.out.println(binary(h.hashCode()));
+        System.out.println(binary(h2));
+        System.out.println(binary(r));
+        System.out.println(r);
+
+
+//        System.out.println(binary(1));
+//        System.out.println(binary(1 << 4));
+//        System.out.println(Integer.parseInt("00010000", 2));
     }
 }
