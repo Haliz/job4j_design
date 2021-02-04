@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 public class SimpleHashMapTest {
@@ -31,5 +32,12 @@ public class SimpleHashMapTest {
         Iterator iterator = map.iterator();
         assertThat(iterator.next(), is(1));
         assertThat(iterator.next(), is(3));
+    }
+
+    @Test(expected = ConcurrentModificationException.class)
+    public void whenCorruptedIt() {
+        Iterator iterator = map.iterator();
+        map.delete(3);
+        iterator.next();
     }
 }
