@@ -8,6 +8,7 @@ import static org.hamcrest.Matchers.is;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class SimpleHashMapTest {
     private SimpleHashMap<Integer, Integer> map;
@@ -39,5 +40,10 @@ public class SimpleHashMapTest {
         Iterator iterator = map.iterator();
         map.delete(3);
         iterator.next();
+    }
+
+    @Test (expected = NoSuchElementException.class)
+    public void whenDeleteOther() {
+        map.get(17);
     }
 }

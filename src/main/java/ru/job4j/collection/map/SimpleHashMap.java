@@ -24,11 +24,14 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
     }
 
     public V get(K key) {
-        return node[hash(key)].getValue();
+        if (node[hash(key)] != null && node[hash(key)].getKey().equals(key)) {
+            return node[hash(key)].getValue();
+        }
+        throw new NoSuchElementException();
     }
 
     public boolean delete(K key) {
-        if (node[hash(key)] != null) {
+        if (node[hash(key)] != null && node[hash(key)].getKey().equals(key)) {
             node[hash(key)] = null;
             size--;
             modCount++;
