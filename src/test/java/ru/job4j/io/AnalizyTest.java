@@ -16,7 +16,7 @@ public class AnalizyTest {
         Analizy analizy = new Analizy();
         analizy.unavailable("server.log", "target.txt");
         StringBuilder rsl = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader("target.log"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("target.txt"))) {
             reader.lines().forEach(rsl::append);
         }
         assertThat(rsl.toString(), is("10:57:01-10:59:01" + "11:01:02-11:02:02"));
