@@ -10,34 +10,26 @@ public class ConsoleChat {
     private final String path;
     private final String botAnswers;
     private List<String> answers;
-    private boolean isAnswer = true;
-    private static final String OUT = "закончить";
-    private static final String STOP = "стоп";
-    private static final String CONTINUE = "продолжить";
+    private static boolean isAnswer = true;
 
     public ConsoleChat(String path, String botAnswers) {
         this.path = path;
         this.botAnswers = botAnswers;
     }
 
-    public void run() {
+    public void run(Map condition) {
         List<String> log = new LinkedList<>();
         Scanner input = new Scanner(System.in);
         String question = null;
         getAnswers();
-        while (!Objects.equals(question, OUT)) {
+        boolean run = true;
+        while (run) {
             System.out.println("Введите фразу:");
             question = input.nextLine();
             log.add("USER: " + question);
-            if (Objects.equals(question, OUT)) {
-                continue;
-            }
-            if (Objects.equals(question, STOP)) {
-                isAnswer = false;
-                continue;
-            }
-            if (Objects.equals(question, CONTINUE)) {
-                isAnswer = true;
+            Conditions action = (Conditions) condition.get(question);
+            if (action != null) {
+                run = action.execute();
             }
             if (isAnswer) {
                 int answer = new Random().nextInt(answers.size() - 1);
@@ -63,7 +55,15 @@ public class ConsoleChat {
     }
 
     public static void main(String[] args) {
+        Map mapConditions = new HashMap();
+        mapConditions.put("закончить", new Out());
+        mapConditions.put("стоп", new Stop());
+        mapConditions.put("продолжить", new Continue());
         ConsoleChat cc = new ConsoleChat("ChatLog.txt", "Answers.txt");
-        cc.run();
+        cc.run(mapConditions);
+    }
+
+    public static void setIsAnswer(boolean isAnswer) {
+        ConsoleChat.isAnswer = isAnswer;
     }
 }
