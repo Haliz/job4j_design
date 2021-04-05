@@ -37,9 +37,14 @@ public class ConsoleChat {
                 System.out.println(answers.get(answer));
             }
         }
+        writeLog(log);
+    }
+
+    public void writeLog(List<String> log) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
             for (String line : log) {
-                writer.write(line + '\n');
+                writer.write(line);
+                writer.newLine();
             }
         } catch (Exception e) {
             e.printStackTrace();
