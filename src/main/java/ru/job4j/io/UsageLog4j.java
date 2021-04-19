@@ -16,8 +16,8 @@ public class UsageLog4j {
         long f = 500;
         short g = 1000;
         boolean h = true;
-        LOG.debug("int variable : {}, char variable : {}, float variable : {}, double variable : {}," +
-                        "byte variable : {}, long variable : {}, short variable : {}, boolean variable : {},",
+        LOG.debug("int variable : {}, char variable : {}, float variable : {}, double variable : {},"
+                        + "byte variable : {}, long variable : {}, short variable : {}, boolean variable : {},",
                 a, b, c, d, e, f, g, h);
     }
 }

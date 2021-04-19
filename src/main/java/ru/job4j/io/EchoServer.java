@@ -19,7 +19,8 @@ public class EchoServer {
                              new InputStreamReader(socket.getInputStream()))) {
                     String str;
                     String answer = "What?";
-                    while (!(str = in.readLine()).isEmpty() && str.contains("?msg=")) {
+                    str = in.readLine();
+                    while (!(str.isEmpty()) && str.contains("?msg=")) {
                         System.out.println(str);
                         out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                         if (str.contains("?msg=Exit")) {
