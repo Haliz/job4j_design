@@ -1,7 +1,6 @@
 package ru.job4j.serialization.xml;
 
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.StringReader;
@@ -21,7 +20,7 @@ public class Main {
             System.out.println(xml);
         }
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        try(StringReader reader = new StringReader(xml)) {
+        try (StringReader reader = new StringReader(xml)) {
             Book result = (Book) unmarshaller.unmarshal(reader);
             System.out.println(result);
         }
