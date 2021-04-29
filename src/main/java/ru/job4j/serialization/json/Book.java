@@ -1,8 +1,12 @@
 package ru.job4j.serialization.json;
 
 import com.google.gson.Gson;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Book {
     private final String title;
@@ -30,20 +34,51 @@ public class Book {
                 + '}';
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public boolean isForSale() {
+        return forSale;
+    }
+
+    public int getNumberOfPages() {
+        return numberOfPages;
+    }
+
+    public String[] getGenre() {
+        return genre;
+    }
+
     public static void main(String[] args) {
         Book book1 = new Book("Java. Полное руководство", new Author("Г. Шилдт"),
                 true, 1488, "computers", "java");
-        final Gson gson = new Gson();
-        String strGson = gson.toJson(book1);
-        Book book2 = gson.fromJson(strGson, Book.class);
-        System.out.println(book1);
-        System.out.println(book2);
-        String myJson = "{" + "\"title\" : \"Java. Полное руководство\","
-                + "\"author\" : { \"name\" : \"Хортсман\"},"
-                + "\"forSale\" : false, \"numberOfPages\" : 500,"
-                + "\"genre\" : [\"Computers\", \"Java\"]"
-                + "}";
-        Book book3 = gson.fromJson(myJson, Book.class);
-        System.out.println(book3);
+        Book book2 = new Book("Java. Полное руководство", new Author("Хортсман"),
+                false, 500, "Computers", "Java");
+
+        System.out.println(new JSONObject(book1));
+
+        /* JSONObject из json-строки */
+        JSONObject jsonAuthor = new JSONObject("{\"name\" : \"Хортсман\"}");
+
+        /* JSONArray из ArrayList */
+        List<String> list = new ArrayList<>();
+        list.add("Computers");
+        list.add("Java");
+        JSONArray jsonGenres = new JSONArray(list);
+
+        /* JSONObject напрямую методом put */
+        JSONObject jsonBook2 = new JSONObject();
+        jsonBook2.put("title", book2.getTitle());
+        jsonBook2.put("author", jsonAuthor);
+        jsonBook2.put("forSale", book2.isForSale());
+        jsonBook2.put("numberOfPages", book2.getNumberOfPages());
+        jsonBook2.put("genres", jsonGenres);
+
+        System.out.println(jsonBook2);
     }
 }
