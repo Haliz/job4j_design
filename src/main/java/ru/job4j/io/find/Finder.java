@@ -38,16 +38,18 @@ public class Finder {
     public static void main(String[] args) throws IOException {
         Finder.validate(args);
         Path start = Paths.get(values.get("d"));
-        Predicate<Path> condition;
-        if (values.get("t").equals("mask")) {
-            condition = p -> p.toFile().getName().contains((values.get("n")));
-        } else if (values.get("t").equals("name")){
-            condition = p -> p.toFile().getName().equals((values.get("n")));
-        } else {
+        List<Path> found = search(start, selectingCondition(values.get("t")));
+        writingToFile(found);
+    }
+
+    public static Predicate<Path> selectingCondition(String t) {
+        Map<String, Predicate<Path>> conditionMap = new HashMap<>();
+        conditionMap.put("mask", p -> p.toFile().getName().contains((values.get("n"))));
+        conditionMap.put("name", p -> p.toFile().getName().equals((values.get("n"))));
+        if (!conditionMap.containsKey(t)) {
             throw new IllegalArgumentException("Incorrect argument -t");
         }
-        List<Path> found = search(start, condition);
-        writingToFile(found);
+        return conditionMap.get(t);
     }
 
     public static List<Path> search(Path root, Predicate<Path> condition) throws IOException {
