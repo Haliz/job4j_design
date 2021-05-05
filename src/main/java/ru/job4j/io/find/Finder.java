@@ -8,7 +8,7 @@ import java.util.*;
 import java.util.function.Predicate;
 
 public class Finder {
-    private static final Map<String, String> values = new HashMap<>();
+    private static final Map<String, String> VALUES = new HashMap<>();
 
     public static void validate(String[] args) {
         if (args.length != 4) {
@@ -25,11 +25,11 @@ public class Finder {
             if (splitElem.length != 2) {
                 throw new IllegalArgumentException(String.format("Incorrect argument -%s", splitElem));
             }
-            values.put(splitElem[0], splitElem[1]);
+            VALUES.put(splitElem[0], splitElem[1]);
         }
         String[] arrKeys = {"d", "n", "t", "o" };
         for (String key : arrKeys) {
-            if (!values.containsKey(key)) {
+            if (!VALUES.containsKey(key)) {
                 throw new IllegalArgumentException(String.format("Incorrect argument -%s", key));
             }
         }
@@ -37,15 +37,15 @@ public class Finder {
 
     public static void main(String[] args) throws IOException {
         Finder.validate(args);
-        Path start = Paths.get(values.get("d"));
-        List<Path> found = search(start, selectingCondition(values.get("t")));
+        Path start = Paths.get(VALUES.get("d"));
+        List<Path> found = search(start, selectingCondition(VALUES.get("t")));
         writingToFile(found);
     }
 
     public static Predicate<Path> selectingCondition(String t) {
         Map<String, Predicate<Path>> conditionMap = new HashMap<>();
-        conditionMap.put("mask", p -> p.toFile().getName().contains((values.get("n"))));
-        conditionMap.put("name", p -> p.toFile().getName().equals((values.get("n"))));
+        conditionMap.put("mask", p -> p.toFile().getName().contains((VALUES.get("n"))));
+        conditionMap.put("name", p -> p.toFile().getName().equals((VALUES.get("n"))));
         if (!conditionMap.containsKey(t)) {
             throw new IllegalArgumentException("Incorrect argument -t");
         }
@@ -59,7 +59,7 @@ public class Finder {
     }
 
     public static void writingToFile(List<Path> paths) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(values.get("o")))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(VALUES.get("o")))) {
             if (paths.isEmpty()) {
                 writer.write("File(s) NOT FOUND!");
             }
