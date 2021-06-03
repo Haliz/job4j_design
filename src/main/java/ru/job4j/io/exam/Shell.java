@@ -1,10 +1,10 @@
 package ru.job4j.io.exam;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Stack;
 
 public class Shell {
-    private ArrayList<String> arr = new ArrayList<>();
+    private Stack<String> arr = new Stack<>();
 
     public void cd(String path) {
         if (path.startsWith("/")) {
@@ -12,7 +12,7 @@ public class Shell {
         } else if (path.startsWith("..")) {
             path = path.substring(2);
             if (!arr.isEmpty()) {
-                arr.remove((arr.size()) - 1);
+                arr.pop();
             }
         }
         String[] split = path.split("/");
