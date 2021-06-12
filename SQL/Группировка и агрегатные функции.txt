@@ -1,0 +1,57 @@
+insert into people(name) values ('Аня');
+insert into people(name) values ('Настя');
+insert into people(name) values ('Таня');
+insert into people(name) values ('Ваня');
+insert into people(name) values ('Боря');
+insert into people(name) values ('Игорь');
+
+insert into devices(name, price) values ('Часы', '1500');
+insert into devices(name, price) values ('Часы классные', '3800');
+insert into devices(name, price) values ('Телефон простой', '3000');
+insert into devices(name, price) values ('Смартфон', '20000');
+insert into devices(name, price) values ('Айфон', '65800');
+
+insert into devices_people(device_id, people_id) values (1, 1);
+insert into devices_people(device_id, people_id) values (2, 2);
+insert into devices_people(device_id, people_id) values (4, 3);
+insert into devices_people(device_id, people_id) values (1, 3);
+insert into devices_people(device_id, people_id) values (5, 3);
+insert into devices_people(device_id, people_id) values (3, 4);
+insert into devices_people(device_id, people_id) values (2, 5);
+insert into devices_people(device_id, people_id) values (2, 6);
+insert into devices_people(device_id, people_id) values (4, 6);
+insert into devices_people(device_id, people_id) values (5, 6);
+
+
+psql_db=# select avg(price) from devices;
+  avg
+-------
+ 18820
+(1 строка)
+
+select p.name, avg(d.price) from people as p join devices_people as dp on dp.people_id = p.id
+join devices as d on dp.device_id = d.id
+group by p.name;
+
+ name  |        avg
+-------+--------------------
+ Ваня  |               3000
+ Настя |               3800
+ Таня  |              29100
+ Боря  |               3800
+ Игорь | 29866.666666666668
+ Аня   |               1500
+(6 строк)
+
+
+select p.name, avg(d.price) from people as p join devices_people as dp on dp.people_id = p.id
+join devices as d on dp.device_id = d.id
+group by p.name
+having avg(d.price) > 5000;
+
+ name  |        avg
+-------+--------------------
+ Таня  |              29100
+ Игорь | 29866.666666666668
+(2 строки)
+
