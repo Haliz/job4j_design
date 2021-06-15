@@ -1,0 +1,574 @@
+1. Создать таблицы и заполнить их начальными данными
+
+create table departments (
+id serial primary key,
+	name VARCHAR(50)
+);
+
+insert into departments (name) values ('Training');
+insert into departments (name) values ('Product Shipment');
+insert into departments (name) values ('Sales');
+insert into departments (name) values ('Product Management');
+insert into departments (name) values ('Research and Development');
+
+create table emploees (
+id serial primary key,
+name VARCHAR(50),
+id_department INT references departments(id)
+);
+
+insert into emploees (name, id_department) values ('Gianina', 2);
+insert into emploees (name, id_department) values ('Maria', 2);
+insert into emploees (name, id_department) values ('Gerhard', 1);
+insert into emploees (name, id_department) values ('Eydie', 1);
+insert into emploees (name, id_department) values ('Arliene', 4);
+insert into emploees (name, id_department) values ('Shel', 1);
+insert into emploees (name, id_department) values ('Kerry', 1);
+insert into emploees (name, id_department) values ('Bernard', 4);
+insert into emploees (name, id_department) values ('Birgit', 3);
+insert into emploees (name, id_department) values ('Isobel', 1);
+insert into emploees (name, id_department) values ('Tilda', 1);
+insert into emploees (name, id_department) values ('Shelton', 2);
+insert into emploees (name, id_department) values ('Kurtis', 4);
+insert into emploees (name, id_department) values ('Torrey', 4);
+insert into emploees (name, id_department) values ('Eziechiele', 4);
+insert into emploees (name, id_department) values ('Jobye', 2);
+insert into emploees (name, id_department) values ('Darius', 2);
+insert into emploees (name, id_department) values ('Rozella', 4);
+insert into emploees (name, id_department) values ('Dory', 3);
+insert into emploees (name, id_department) values ('Cory', 2);
+insert into emploees (name, id_department) values ('Nick', 2);
+insert into emploees (name, id_department) values ('Hilly', 3);
+insert into emploees (name, id_department) values ('Darsie', 1);
+insert into emploees (name, id_department) values ('Enrique', 3);
+insert into emploees (name, id_department) values ('Hildagarde', 2);
+insert into emploees (name, id_department) values ('Nicolina', 4);
+insert into emploees (name, id_department) values ('Honor', 1);
+insert into emploees (name, id_department) values ('Ole', 2);
+insert into emploees (name, id_department) values ('Ebba', 1);
+insert into emploees (name, id_department) values ('Innis', 2);
+insert into emploees (name, id_department) values ('Reggi', 4);
+insert into emploees (name, id_department) values ('Jamaal', 3);
+insert into emploees (name, id_department) values ('Meggy', 2);
+insert into emploees (name, id_department) values ('Abbye', 3);
+insert into emploees (name, id_department) values ('Fredia', 2);
+insert into emploees (name, id_department) values ('Melissa', 2);
+insert into emploees (name, id_department) values ('Beitris', 4);
+insert into emploees (name, id_department) values ('Armstrong', 3);
+insert into emploees (name, id_department) values ('Emelyne', 1);
+insert into emploees (name, id_department) values ('Kassi', 2);
+insert into emploees (name, id_department) values ('Kylie', 4);
+insert into emploees (name, id_department) values ('Zachariah', 4);
+insert into emploees (name, id_department) values ('Muffin', 4);
+insert into emploees (name, id_department) values ('Albertina', 3);
+insert into emploees (name, id_department) values ('Yvor', 4);
+insert into emploees (name, id_department) values ('Marj', 3);
+insert into emploees (name, id_department) values ('Loralee', 3);
+insert into emploees (name, id_department) values ('Garvin', 1);
+insert into emploees (name, id_department) values ('Claudianus', 2);
+insert into emploees (name, id_department) values ('Oby', 3);
+
+
+2. Выполнить запросы с left, rigth, full, cross соединениями
+
+SELECT * FROM departments d LEFT JOIN emploees e ON e.id_department = d.id;
+
+ id |           name           | id |    name    | id_department
+----+--------------------------+----+------------+---------------
+  2 | Product Shipment         |  1 | Gianina    |             2
+  2 | Product Shipment         |  2 | Maria      |             2
+  1 | Training                 |  3 | Gerhard    |             1
+  1 | Training                 |  4 | Eydie      |             1
+  4 | Product Management       |  5 | Arliene    |             4
+  1 | Training                 |  6 | Shel       |             1
+  1 | Training                 |  7 | Kerry      |             1
+  4 | Product Management       |  8 | Bernard    |             4
+  3 | Sales                    |  9 | Birgit     |             3
+  1 | Training                 | 10 | Isobel     |             1
+  1 | Training                 | 11 | Tilda      |             1
+  2 | Product Shipment         | 12 | Shelton    |             2
+  4 | Product Management       | 13 | Kurtis     |             4
+  4 | Product Management       | 14 | Torrey     |             4
+  4 | Product Management       | 15 | Eziechiele |             4
+  2 | Product Shipment         | 16 | Jobye      |             2
+  2 | Product Shipment         | 17 | Darius     |             2
+  4 | Product Management       | 18 | Rozella    |             4
+  3 | Sales                    | 19 | Dory       |             3
+  2 | Product Shipment         | 20 | Cory       |             2
+  2 | Product Shipment         | 21 | Nick       |             2
+  3 | Sales                    | 22 | Hilly      |             3
+  1 | Training                 | 23 | Darsie     |             1
+  3 | Sales                    | 24 | Enrique    |             3
+  2 | Product Shipment         | 25 | Hildagarde |             2
+  4 | Product Management       | 26 | Nicolina   |             4
+  1 | Training                 | 27 | Honor      |             1
+  2 | Product Shipment         | 28 | Ole        |             2
+  1 | Training                 | 29 | Ebba       |             1
+  2 | Product Shipment         | 30 | Innis      |             2
+  4 | Product Management       | 31 | Reggi      |             4
+  3 | Sales                    | 32 | Jamaal     |             3
+  2 | Product Shipment         | 33 | Meggy      |             2
+  3 | Sales                    | 34 | Abbye      |             3
+  2 | Product Shipment         | 35 | Fredia     |             2
+  2 | Product Shipment         | 36 | Melissa    |             2
+  4 | Product Management       | 37 | Beitris    |             4
+  3 | Sales                    | 38 | Armstrong  |             3
+  1 | Training                 | 39 | Emelyne    |             1
+  2 | Product Shipment         | 40 | Kassi      |             2
+  4 | Product Management       | 41 | Kylie      |             4
+  4 | Product Management       | 42 | Zachariah  |             4
+  4 | Product Management       | 43 | Muffin     |             4
+  3 | Sales                    | 44 | Albertina  |             3
+  4 | Product Management       | 45 | Yvor       |             4
+  3 | Sales                    | 46 | Marj       |             3
+  3 | Sales                    | 47 | Loralee    |             3
+  1 | Training                 | 48 | Garvin     |             1
+  2 | Product Shipment         | 49 | Claudianus |             2
+  3 | Sales                    | 50 | Oby        |             3
+  5 | Research and Development |    |            |
+(51 строка)
+
+
+SELECT * FROM departments d RIGHT JOIN emploees e ON e.id_department = d.id;
+
+ id |        name        | id |    name    | id_department
+----+--------------------+----+------------+---------------
+  2 | Product Shipment   |  1 | Gianina    |             2
+  2 | Product Shipment   |  2 | Maria      |             2
+  1 | Training           |  3 | Gerhard    |             1
+  1 | Training           |  4 | Eydie      |             1
+  4 | Product Management |  5 | Arliene    |             4
+  1 | Training           |  6 | Shel       |             1
+  1 | Training           |  7 | Kerry      |             1
+  4 | Product Management |  8 | Bernard    |             4
+  3 | Sales              |  9 | Birgit     |             3
+  1 | Training           | 10 | Isobel     |             1
+  1 | Training           | 11 | Tilda      |             1
+  2 | Product Shipment   | 12 | Shelton    |             2
+  4 | Product Management | 13 | Kurtis     |             4
+  4 | Product Management | 14 | Torrey     |             4
+  4 | Product Management | 15 | Eziechiele |             4
+  2 | Product Shipment   | 16 | Jobye      |             2
+  2 | Product Shipment   | 17 | Darius     |             2
+  4 | Product Management | 18 | Rozella    |             4
+  3 | Sales              | 19 | Dory       |             3
+  2 | Product Shipment   | 20 | Cory       |             2
+  2 | Product Shipment   | 21 | Nick       |             2
+  3 | Sales              | 22 | Hilly      |             3
+  1 | Training           | 23 | Darsie     |             1
+  3 | Sales              | 24 | Enrique    |             3
+  2 | Product Shipment   | 25 | Hildagarde |             2
+  4 | Product Management | 26 | Nicolina   |             4
+  1 | Training           | 27 | Honor      |             1
+  2 | Product Shipment   | 28 | Ole        |             2
+  1 | Training           | 29 | Ebba       |             1
+  2 | Product Shipment   | 30 | Innis      |             2
+  4 | Product Management | 31 | Reggi      |             4
+  3 | Sales              | 32 | Jamaal     |             3
+  2 | Product Shipment   | 33 | Meggy      |             2
+  3 | Sales              | 34 | Abbye      |             3
+  2 | Product Shipment   | 35 | Fredia     |             2
+  2 | Product Shipment   | 36 | Melissa    |             2
+  4 | Product Management | 37 | Beitris    |             4
+  3 | Sales              | 38 | Armstrong  |             3
+  1 | Training           | 39 | Emelyne    |             1
+  2 | Product Shipment   | 40 | Kassi      |             2
+  4 | Product Management | 41 | Kylie      |             4
+  4 | Product Management | 42 | Zachariah  |             4
+  4 | Product Management | 43 | Muffin     |             4
+  3 | Sales              | 44 | Albertina  |             3
+  4 | Product Management | 45 | Yvor       |             4
+  3 | Sales              | 46 | Marj       |             3
+  3 | Sales              | 47 | Loralee    |             3
+  1 | Training           | 48 | Garvin     |             1
+  2 | Product Shipment   | 49 | Claudianus |             2
+  3 | Sales              | 50 | Oby        |             3
+(50 строк)
+
+SELECT * FROM departments d FULL JOIN emploees e ON e.id_department = d.id;
+
+ id |           name           | id |    name    | id_department
+----+--------------------------+----+------------+---------------
+  2 | Product Shipment         |  1 | Gianina    |             2
+  2 | Product Shipment         |  2 | Maria      |             2
+  1 | Training                 |  3 | Gerhard    |             1
+  1 | Training                 |  4 | Eydie      |             1
+  4 | Product Management       |  5 | Arliene    |             4
+  1 | Training                 |  6 | Shel       |             1
+  1 | Training                 |  7 | Kerry      |             1
+  4 | Product Management       |  8 | Bernard    |             4
+  3 | Sales                    |  9 | Birgit     |             3
+  1 | Training                 | 10 | Isobel     |             1
+  1 | Training                 | 11 | Tilda      |             1
+  2 | Product Shipment         | 12 | Shelton    |             2
+  4 | Product Management       | 13 | Kurtis     |             4
+  4 | Product Management       | 14 | Torrey     |             4
+  4 | Product Management       | 15 | Eziechiele |             4
+  2 | Product Shipment         | 16 | Jobye      |             2
+  2 | Product Shipment         | 17 | Darius     |             2
+  4 | Product Management       | 18 | Rozella    |             4
+  3 | Sales                    | 19 | Dory       |             3
+  2 | Product Shipment         | 20 | Cory       |             2
+  2 | Product Shipment         | 21 | Nick       |             2
+  3 | Sales                    | 22 | Hilly      |             3
+  1 | Training                 | 23 | Darsie     |             1
+  3 | Sales                    | 24 | Enrique    |             3
+  2 | Product Shipment         | 25 | Hildagarde |             2
+  4 | Product Management       | 26 | Nicolina   |             4
+  1 | Training                 | 27 | Honor      |             1
+  2 | Product Shipment         | 28 | Ole        |             2
+  1 | Training                 | 29 | Ebba       |             1
+  2 | Product Shipment         | 30 | Innis      |             2
+  4 | Product Management       | 31 | Reggi      |             4
+  3 | Sales                    | 32 | Jamaal     |             3
+  2 | Product Shipment         | 33 | Meggy      |             2
+  3 | Sales                    | 34 | Abbye      |             3
+  2 | Product Shipment         | 35 | Fredia     |             2
+  2 | Product Shipment         | 36 | Melissa    |             2
+  4 | Product Management       | 37 | Beitris    |             4
+  3 | Sales                    | 38 | Armstrong  |             3
+  1 | Training                 | 39 | Emelyne    |             1
+  2 | Product Shipment         | 40 | Kassi      |             2
+  4 | Product Management       | 41 | Kylie      |             4
+  4 | Product Management       | 42 | Zachariah  |             4
+  4 | Product Management       | 43 | Muffin     |             4
+  3 | Sales                    | 44 | Albertina  |             3
+  4 | Product Management       | 45 | Yvor       |             4
+  3 | Sales                    | 46 | Marj       |             3
+  3 | Sales                    | 47 | Loralee    |             3
+  1 | Training                 | 48 | Garvin     |             1
+  2 | Product Shipment         | 49 | Claudianus |             2
+  3 | Sales                    | 50 | Oby        |             3
+  5 | Research and Development |    |            |
+(51 строка)
+
+
+SELECT * FROM departments d CROSS JOIN emploees e;
+
+ id |           name           | id |    name    | id_department
+----+--------------------------+----+------------+---------------
+  1 | Training                 |  1 | Gianina    |             2
+  1 | Training                 |  2 | Maria      |             2
+  1 | Training                 |  3 | Gerhard    |             1
+  1 | Training                 |  4 | Eydie      |             1
+  1 | Training                 |  5 | Arliene    |             4
+  1 | Training                 |  6 | Shel       |             1
+  1 | Training                 |  7 | Kerry      |             1
+  1 | Training                 |  8 | Bernard    |             4
+  1 | Training                 |  9 | Birgit     |             3
+  1 | Training                 | 10 | Isobel     |             1
+  1 | Training                 | 11 | Tilda      |             1
+  1 | Training                 | 12 | Shelton    |             2
+  1 | Training                 | 13 | Kurtis     |             4
+  1 | Training                 | 14 | Torrey     |             4
+  1 | Training                 | 15 | Eziechiele |             4
+  1 | Training                 | 16 | Jobye      |             2
+  1 | Training                 | 17 | Darius     |             2
+  1 | Training                 | 18 | Rozella    |             4
+  1 | Training                 | 19 | Dory       |             3
+  1 | Training                 | 20 | Cory       |             2
+  1 | Training                 | 21 | Nick       |             2
+  1 | Training                 | 22 | Hilly      |             3
+  1 | Training                 | 23 | Darsie     |             1
+  1 | Training                 | 24 | Enrique    |             3
+  1 | Training                 | 25 | Hildagarde |             2
+  1 | Training                 | 26 | Nicolina   |             4
+  1 | Training                 | 27 | Honor      |             1
+  1 | Training                 | 28 | Ole        |             2
+  1 | Training                 | 29 | Ebba       |             1
+  1 | Training                 | 30 | Innis      |             2
+  1 | Training                 | 31 | Reggi      |             4
+  1 | Training                 | 32 | Jamaal     |             3
+  1 | Training                 | 33 | Meggy      |             2
+  1 | Training                 | 34 | Abbye      |             3
+  1 | Training                 | 35 | Fredia     |             2
+  1 | Training                 | 36 | Melissa    |             2
+  1 | Training                 | 37 | Beitris    |             4
+  1 | Training                 | 38 | Armstrong  |             3
+  1 | Training                 | 39 | Emelyne    |             1
+  1 | Training                 | 40 | Kassi      |             2
+  1 | Training                 | 41 | Kylie      |             4
+  1 | Training                 | 42 | Zachariah  |             4
+  1 | Training                 | 43 | Muffin     |             4
+  1 | Training                 | 44 | Albertina  |             3
+  1 | Training                 | 45 | Yvor       |             4
+  1 | Training                 | 46 | Marj       |             3
+  1 | Training                 | 47 | Loralee    |             3
+  1 | Training                 | 48 | Garvin     |             1
+  1 | Training                 | 49 | Claudianus |             2
+  1 | Training                 | 50 | Oby        |             3
+  2 | Product Shipment         |  1 | Gianina    |             2
+  2 | Product Shipment         |  2 | Maria      |             2
+  2 | Product Shipment         |  3 | Gerhard    |             1
+  2 | Product Shipment         |  4 | Eydie      |             1
+  2 | Product Shipment         |  5 | Arliene    |             4
+  2 | Product Shipment         |  6 | Shel       |             1
+  2 | Product Shipment         |  7 | Kerry      |             1
+  2 | Product Shipment         |  8 | Bernard    |             4
+  2 | Product Shipment         |  9 | Birgit     |             3
+  2 | Product Shipment         | 10 | Isobel     |             1
+  2 | Product Shipment         | 11 | Tilda      |             1
+  2 | Product Shipment         | 12 | Shelton    |             2
+  2 | Product Shipment         | 13 | Kurtis     |             4
+  2 | Product Shipment         | 14 | Torrey     |             4
+  2 | Product Shipment         | 15 | Eziechiele |             4
+  2 | Product Shipment         | 16 | Jobye      |             2
+  2 | Product Shipment         | 17 | Darius     |             2
+  2 | Product Shipment         | 18 | Rozella    |             4
+  2 | Product Shipment         | 19 | Dory       |             3
+  2 | Product Shipment         | 20 | Cory       |             2
+  2 | Product Shipment         | 21 | Nick       |             2
+  2 | Product Shipment         | 22 | Hilly      |             3
+  2 | Product Shipment         | 23 | Darsie     |             1
+  2 | Product Shipment         | 24 | Enrique    |             3
+  2 | Product Shipment         | 25 | Hildagarde |             2
+  2 | Product Shipment         | 26 | Nicolina   |             4
+  2 | Product Shipment         | 27 | Honor      |             1
+  2 | Product Shipment         | 28 | Ole        |             2
+  2 | Product Shipment         | 29 | Ebba       |             1
+  2 | Product Shipment         | 30 | Innis      |             2
+  2 | Product Shipment         | 31 | Reggi      |             4
+  2 | Product Shipment         | 32 | Jamaal     |             3
+  2 | Product Shipment         | 33 | Meggy      |             2
+  2 | Product Shipment         | 34 | Abbye      |             3
+  2 | Product Shipment         | 35 | Fredia     |             2
+  2 | Product Shipment         | 36 | Melissa    |             2
+  2 | Product Shipment         | 37 | Beitris    |             4
+  2 | Product Shipment         | 38 | Armstrong  |             3
+  2 | Product Shipment         | 39 | Emelyne    |             1
+  2 | Product Shipment         | 40 | Kassi      |             2
+  2 | Product Shipment         | 41 | Kylie      |             4
+  2 | Product Shipment         | 42 | Zachariah  |             4
+  2 | Product Shipment         | 43 | Muffin     |             4
+  2 | Product Shipment         | 44 | Albertina  |             3
+  2 | Product Shipment         | 45 | Yvor       |             4
+  2 | Product Shipment         | 46 | Marj       |             3
+  2 | Product Shipment         | 47 | Loralee    |             3
+  2 | Product Shipment         | 48 | Garvin     |             1
+  2 | Product Shipment         | 49 | Claudianus |             2
+  2 | Product Shipment         | 50 | Oby        |             3
+  3 | Sales                    |  1 | Gianina    |             2
+  3 | Sales                    |  2 | Maria      |             2
+  3 | Sales                    |  3 | Gerhard    |             1
+  3 | Sales                    |  4 | Eydie      |             1
+  3 | Sales                    |  5 | Arliene    |             4
+  3 | Sales                    |  6 | Shel       |             1
+  3 | Sales                    |  7 | Kerry      |             1
+  3 | Sales                    |  8 | Bernard    |             4
+  3 | Sales                    |  9 | Birgit     |             3
+  3 | Sales                    | 10 | Isobel     |             1
+  3 | Sales                    | 11 | Tilda      |             1
+  3 | Sales                    | 12 | Shelton    |             2
+  3 | Sales                    | 13 | Kurtis     |             4
+  3 | Sales                    | 14 | Torrey     |             4
+  3 | Sales                    | 15 | Eziechiele |             4
+  3 | Sales                    | 16 | Jobye      |             2
+  3 | Sales                    | 17 | Darius     |             2
+  3 | Sales                    | 18 | Rozella    |             4
+  3 | Sales                    | 19 | Dory       |             3
+  3 | Sales                    | 20 | Cory       |             2
+  3 | Sales                    | 21 | Nick       |             2
+  3 | Sales                    | 22 | Hilly      |             3
+  3 | Sales                    | 23 | Darsie     |             1
+  3 | Sales                    | 24 | Enrique    |             3
+  3 | Sales                    | 25 | Hildagarde |             2
+  3 | Sales                    | 26 | Nicolina   |             4
+  3 | Sales                    | 27 | Honor      |             1
+  3 | Sales                    | 28 | Ole        |             2
+  3 | Sales                    | 29 | Ebba       |             1
+  3 | Sales                    | 30 | Innis      |             2
+  3 | Sales                    | 31 | Reggi      |             4
+  3 | Sales                    | 32 | Jamaal     |             3
+  3 | Sales                    | 33 | Meggy      |             2
+  3 | Sales                    | 34 | Abbye      |             3
+  3 | Sales                    | 35 | Fredia     |             2
+  3 | Sales                    | 36 | Melissa    |             2
+  3 | Sales                    | 37 | Beitris    |             4
+  3 | Sales                    | 38 | Armstrong  |             3
+  3 | Sales                    | 39 | Emelyne    |             1
+  3 | Sales                    | 40 | Kassi      |             2
+  3 | Sales                    | 41 | Kylie      |             4
+  3 | Sales                    | 42 | Zachariah  |             4
+  3 | Sales                    | 43 | Muffin     |             4
+  3 | Sales                    | 44 | Albertina  |             3
+  3 | Sales                    | 45 | Yvor       |             4
+  3 | Sales                    | 46 | Marj       |             3
+  3 | Sales                    | 47 | Loralee    |             3
+  3 | Sales                    | 48 | Garvin     |             1
+  3 | Sales                    | 49 | Claudianus |             2
+  3 | Sales                    | 50 | Oby        |             3
+  4 | Product Management       |  1 | Gianina    |             2
+  4 | Product Management       |  2 | Maria      |             2
+  4 | Product Management       |  3 | Gerhard    |             1
+  4 | Product Management       |  4 | Eydie      |             1
+  4 | Product Management       |  5 | Arliene    |             4
+  4 | Product Management       |  6 | Shel       |             1
+  4 | Product Management       |  7 | Kerry      |             1
+  4 | Product Management       |  8 | Bernard    |             4
+  4 | Product Management       |  9 | Birgit     |             3
+  4 | Product Management       | 10 | Isobel     |             1
+  4 | Product Management       | 11 | Tilda      |             1
+  4 | Product Management       | 12 | Shelton    |             2
+  4 | Product Management       | 13 | Kurtis     |             4
+  4 | Product Management       | 14 | Torrey     |             4
+  4 | Product Management       | 15 | Eziechiele |             4
+  4 | Product Management       | 16 | Jobye      |             2
+  4 | Product Management       | 17 | Darius     |             2
+  4 | Product Management       | 18 | Rozella    |             4
+  4 | Product Management       | 19 | Dory       |             3
+  4 | Product Management       | 20 | Cory       |             2
+  4 | Product Management       | 21 | Nick       |             2
+  4 | Product Management       | 22 | Hilly      |             3
+  4 | Product Management       | 23 | Darsie     |             1
+  4 | Product Management       | 24 | Enrique    |             3
+  4 | Product Management       | 25 | Hildagarde |             2
+  4 | Product Management       | 26 | Nicolina   |             4
+  4 | Product Management       | 27 | Honor      |             1
+  4 | Product Management       | 28 | Ole        |             2
+  4 | Product Management       | 29 | Ebba       |             1
+  4 | Product Management       | 30 | Innis      |             2
+  4 | Product Management       | 31 | Reggi      |             4
+  4 | Product Management       | 32 | Jamaal     |             3
+  4 | Product Management       | 33 | Meggy      |             2
+  4 | Product Management       | 34 | Abbye      |             3
+  4 | Product Management       | 35 | Fredia     |             2
+  4 | Product Management       | 36 | Melissa    |             2
+  4 | Product Management       | 37 | Beitris    |             4
+  4 | Product Management       | 38 | Armstrong  |             3
+  4 | Product Management       | 39 | Emelyne    |             1
+  4 | Product Management       | 40 | Kassi      |             2
+  4 | Product Management       | 41 | Kylie      |             4
+  4 | Product Management       | 42 | Zachariah  |             4
+  4 | Product Management       | 43 | Muffin     |             4
+  4 | Product Management       | 44 | Albertina  |             3
+  4 | Product Management       | 45 | Yvor       |             4
+  4 | Product Management       | 46 | Marj       |             3
+  4 | Product Management       | 47 | Loralee    |             3
+  4 | Product Management       | 48 | Garvin     |             1
+  4 | Product Management       | 49 | Claudianus |             2
+  4 | Product Management       | 50 | Oby        |             3
+  5 | Research and Development |  1 | Gianina    |             2
+  5 | Research and Development |  2 | Maria      |             2
+  5 | Research and Development |  3 | Gerhard    |             1
+  5 | Research and Development |  4 | Eydie      |             1
+  5 | Research and Development |  5 | Arliene    |             4
+  5 | Research and Development |  6 | Shel       |             1
+  5 | Research and Development |  7 | Kerry      |             1
+  5 | Research and Development |  8 | Bernard    |             4
+  5 | Research and Development |  9 | Birgit     |             3
+  5 | Research and Development | 10 | Isobel     |             1
+  5 | Research and Development | 11 | Tilda      |             1
+  5 | Research and Development | 12 | Shelton    |             2
+  5 | Research and Development | 13 | Kurtis     |             4
+  5 | Research and Development | 14 | Torrey     |             4
+  5 | Research and Development | 15 | Eziechiele |             4
+  5 | Research and Development | 16 | Jobye      |             2
+  5 | Research and Development | 17 | Darius     |             2
+  5 | Research and Development | 18 | Rozella    |             4
+  5 | Research and Development | 19 | Dory       |             3
+  5 | Research and Development | 20 | Cory       |             2
+  5 | Research and Development | 21 | Nick       |             2
+  5 | Research and Development | 22 | Hilly      |             3
+  5 | Research and Development | 23 | Darsie     |             1
+  5 | Research and Development | 24 | Enrique    |             3
+  5 | Research and Development | 25 | Hildagarde |             2
+  5 | Research and Development | 26 | Nicolina   |             4
+  5 | Research and Development | 27 | Honor      |             1
+  5 | Research and Development | 28 | Ole        |             2
+  5 | Research and Development | 29 | Ebba       |             1
+  5 | Research and Development | 30 | Innis      |             2
+  5 | Research and Development | 31 | Reggi      |             4
+  5 | Research and Development | 32 | Jamaal     |             3
+  5 | Research and Development | 33 | Meggy      |             2
+  5 | Research and Development | 34 | Abbye      |             3
+  5 | Research and Development | 35 | Fredia     |             2
+  5 | Research and Development | 36 | Melissa    |             2
+  5 | Research and Development | 37 | Beitris    |             4
+  5 | Research and Development | 38 | Armstrong  |             3
+  5 | Research and Development | 39 | Emelyne    |             1
+  5 | Research and Development | 40 | Kassi      |             2
+  5 | Research and Development | 41 | Kylie      |             4
+  5 | Research and Development | 42 | Zachariah  |             4
+  5 | Research and Development | 43 | Muffin     |             4
+  5 | Research and Development | 44 | Albertina  |             3
+  5 | Research and Development | 45 | Yvor       |             4
+  5 | Research and Development | 46 | Marj       |             3
+  5 | Research and Development | 47 | Loralee    |             3
+  5 | Research and Development | 48 | Garvin     |             1
+  5 | Research and Development | 49 | Claudianus |             2
+  5 | Research and Development | 50 | Oby        |             3
+(250 строк)
+
+
+3. Используя left join найти департаменты, у которых нет работников
+
+SELECT d.* FROM departments d LEFT JOIN emploees e ON e.id_department = d.id 
+WHERE e.id is null;
+
+ id |           name
+----+--------------------------
+  5 | Research and Development
+(1 строка)
+
+
+4. Используя left и right join написать запросы, которые давали бы одинаковый результат.
+
+SELECT d.* FROM departments d LEFT JOIN emploees e ON e.id_department = d.id;
+
+
+SELECT d.* FROM emploees e RIGHT JOIN departments d ON e.id_department = d.id;
+
+ id |           name
+----+--------------------------
+  2 | Product Shipment
+  2 | Product Shipment
+  1 | Training
+  1 | Training
+  4 | Product Management
+  1 | Training
+  1 | Training
+  4 | Product Management
+  3 | Sales
+  1 | Training
+  1 | Training
+  2 | Product Shipment
+  4 | Product Management
+  4 | Product Management
+  4 | Product Management
+  2 | Product Shipment
+  2 | Product Shipment
+  4 | Product Management
+  3 | Sales
+  2 | Product Shipment
+  2 | Product Shipment
+  3 | Sales
+  1 | Training
+  3 | Sales
+  2 | Product Shipment
+  4 | Product Management
+  1 | Training
+  2 | Product Shipment
+  1 | Training
+  2 | Product Shipment
+  4 | Product Management
+  3 | Sales
+  2 | Product Shipment
+  3 | Sales
+  2 | Product Shipment
+  2 | Product Shipment
+  4 | Product Management
+  3 | Sales
+  1 | Training
+  2 | Product Shipment
+  4 | Product Management
+  4 | Product Management
+  4 | Product Management
+  3 | Sales
+  4 | Product Management
+  3 | Sales
+  3 | Sales
+  1 | Training
+  2 | Product Shipment
+  3 | Sales
+  5 | Research and Development
+(51 строка)
