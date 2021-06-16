@@ -1,0 +1,95 @@
+CREATE TABLE body (
+id serial primary key,
+name varchar(20)
+);
+
+CREATE TABLE engine (
+id serial primary key,
+name varchar(20)
+);
+
+CREATE TABLE transmission (
+id serial primary key,
+name varchar(20)
+);
+
+CREATE TABLE car(
+id serial primary key,
+name varchar(20) NOT NULL,
+id_body int REFERENCES body(id) NOT NULL,
+id_engine int REFERENCES engine(id) NOT NULL,
+id_transmission int REFERENCES transmission(id) NOT NULL
+);
+
+INSERT INTO body (name)
+VALUES ('Седан'),
+	('Хэчбек'),
+	('Универсал');
+
+INSERT INTO engine (name)
+VALUES ('Бензиновый'),
+	('Дизель'),
+	('Водородный');
+
+INSERT INTO transmission (name)
+VALUES ('Механика'),
+	('Автомат'),
+	('Робот'),
+	('Вариатор');
+
+INSERT INTO car (name, id_body, id_engine, id_transmission)
+VALUES ('Автомобиль 1', 1, 1, 1),
+	('Автомобиль 2', 1, 1, 2),
+	('Автомобиль 3', 1, 1, 4),
+	('Автомобиль 4', 1, 2, 2),
+	('Автомобиль 5', 2, 1, 1),
+	('Автомобиль 6', 2, 1, 2),
+	('Автомобиль 7', 2, 2, 1),
+	('Автомобиль 8', 2, 2, 2),
+	('Автомобиль 9', 2, 2, 4),
+	('Автомобиль 10', 2, 1, 4);
+
+1) Вывести список всех машин и все привязанные к ним детали.
+
+SELECT c.id, c.name AS car, b.name AS body, e.name AS engine, t.name AS transmission
+FROM car c JOIN body b ON c.id_body = b.id
+JOIN engine e ON c.id_engine = e.id
+JOIN transmission t ON c.id_transmission = t.id;
+
+ id |      car      |  body  |   engine   | transmission
+----+---------------+--------+------------+--------------
+  1 | Автомобиль 1  | Седан  | Бензиновый | Механика
+  2 | Автомобиль 2  | Седан  | Бензиновый | Автомат
+  3 | Автомобиль 3  | Седан  | Бензиновый | Вариатор
+  4 | Автомобиль 4  | Седан  | Дизель     | Автомат
+  5 | Автомобиль 5  | Хэчбек | Бензиновый | Механика
+  6 | Автомобиль 6  | Хэчбек | Бензиновый | Автомат
+  7 | Автомобиль 7  | Хэчбек | Дизель     | Механика
+  8 | Автомобиль 8  | Хэчбек | Дизель     | Автомат
+  9 | Автомобиль 9  | Хэчбек | Дизель     | Вариатор
+ 10 | Автомобиль 10 | Хэчбек | Бензиновый | Вариатор
+(10 строк)
+
+2) Вывести отдельно детали (1 деталь - 1 запрос), 
+которые не используются НИ в одной машине, кузова, двигатели, коробки передач.
+
+SELECT b.* FROM body b LEFT JOIN car c ON c.id_body = b.id WHERE c.id_body IS null;
+
+id |   name
+----+-----------
+  3 | Универсал
+(1 строка)
+
+SELECT e.* FROM engine e LEFT JOIN car c ON c.id_engine = e.id WHERE c.id_engine IS null;
+
+id |    name
+----+------------
+  3 | Водородный
+(1 строка)
+
+SELECT t.* FROM transmission t LEFT JOIN car c ON c.id_transmission = t.id WHERE c.id_transmission IS null;
+
+id | name
+----+-------
+  3 | Робот
+(1 строка)
