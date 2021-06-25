@@ -1,9 +1,6 @@
 package ru.job4j.jdbc;
 
-import ru.job4j.io.Config;
-
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
@@ -92,7 +89,7 @@ public class TableEditor implements AutoCloseable {
 // Этот метод сделал для проверки работы.
 
     public static void main(String[] args) throws Exception {
-        try (FileInputStream fin = new FileInputStream("app.properties")) {
+        try (FileInputStream fin = new FileInputStream("app1.properties")) {
             Properties map = new Properties();
             map.load(fin);
             TableEditor tableEditor = new TableEditor(map);
