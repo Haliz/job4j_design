@@ -25,6 +25,7 @@ public class ConfigTest {
         config.load();
         assertThat(
                 config.value("hibernate.connection.password"),
+
                 is("password")
         );
     }
