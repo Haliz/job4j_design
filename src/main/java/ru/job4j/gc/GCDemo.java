@@ -1,5 +1,9 @@
 package ru.job4j.gc;
 
+import com.carrotsearch.sizeof.RamUsageEstimator;
+
+
+
 public class GCDemo {
 
     private static final long KB = 1000;
@@ -18,11 +22,11 @@ public class GCDemo {
 
     public static void main(String[] args) {
         info();
-        for (int i = 0; i < 10; i++) {
-            new Person(i, "N" + i);
+        for (int i = 0; i < 220; i++) {
+//          new User(i, "N" + i);
+            System.out.println(RamUsageEstimator.sizeOf(new User(i, "N" + i)));
         }
-        System.gc();
         info();
+        System.out.println(System.getProperty("java.vm.name"));
     }
-
 }
