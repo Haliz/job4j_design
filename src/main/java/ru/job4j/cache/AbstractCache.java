@@ -15,10 +15,13 @@ public abstract class AbstractCache<K, V> {
 
     public V get(K key) {
         V result;
-        if (!this.cache.containsKey(key) || this.cache.get(key).get() == null) {
-            this.put(key, this.load(key));
+        V value = cache.getOrDefault(key, new SoftReference<>(null)).get(); // Здесь создаю жесткую ссылку
+        if (!this.cache.containsKey(key) || value == null) {
+            result = load(key);
+            put(key, result);
+        } else {
+            result = value; // Результат по жесткой ссылке
         }
-        result = this.cache.get(key).get();
         return result;
     }
 
