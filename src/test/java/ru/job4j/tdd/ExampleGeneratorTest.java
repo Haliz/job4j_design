@@ -20,7 +20,7 @@ public class ExampleGeneratorTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void WhenMapHasNotKey() {
+    public void whenMapHasNotKey() {
         Generator generator = new ExampleGenerator();
         String template = "I am a ${lastName}, Who are ${subject}? ";
         Map<String, String> map = new HashMap<>();
@@ -30,7 +30,7 @@ public class ExampleGeneratorTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void WhenMapHasExcessKey() {
+    public void whenMapHasExcessKey() {
         Generator generator = new ExampleGenerator();
         String template = "I am a ${name}. ";
         Map<String, String> map = new HashMap<>();
