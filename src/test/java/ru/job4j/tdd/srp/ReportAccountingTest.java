@@ -22,7 +22,7 @@ public class ReportAccountingTest {
                 .append(worker.getName()).append(";")
                 .append(worker.getHired()).append(";")
                 .append(worker.getFired()).append(";")
-                .append(String.format("%.2f",((worker.getSalary()) / 74))).append(" $;")
+                .append(String.format("%.2f", ((worker.getSalary()) / 74))).append(" $;")
                 .append(System.lineSeparator());
         assertThat(engine.generate(em -> true), is(expect.toString()));
     }

@@ -6,21 +6,17 @@ package ru.job4j.tdd.ocp.wrong;
 public class Mailer {
     private final Logger logger;
 
-    public Mailer()
-    {
+    public Mailer() {
         logger = new Logger(); // Например изменять logger = new DBLogger();
     }
 
-    public void SendMessage(String message)
-    {
+    public void sendMessage(String message) {
         // отсылка сообщения
-
         logger.log(String.format("Отправлено '{0}'", message));
     }
 }
  class Logger {
-    public void log(String logText)
-    {
+    public void log(String logText) {
         // сохранить лог в файле
     }
 }

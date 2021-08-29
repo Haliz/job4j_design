@@ -3,7 +3,7 @@ package ru.job4j.tdd.ocp.wrong;
 public class AllTerrainVehicle {
     private int numberOfWheels;
 
-    public void go () {
+    public void go() {
         System.out.println("Go to the marsh.");
     }
 }

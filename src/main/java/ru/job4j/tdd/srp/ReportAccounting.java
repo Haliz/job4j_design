@@ -19,7 +19,7 @@ public class ReportAccounting implements Report {
             text.append(employee.getName()).append(";")
                     .append(employee.getHired()).append(";")
                     .append(employee.getFired()).append(";")
-                    .append(String.format("%.2f",((employee.getSalary()) / 74))).append(" $;")
+                    .append(String.format("%.2f", ((employee.getSalary()) / 74))).append(" $;")
                     .append(System.lineSeparator());
         }
         return text.toString();

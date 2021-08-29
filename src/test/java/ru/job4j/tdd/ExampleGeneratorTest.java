@@ -1,6 +1,7 @@
 package ru.job4j.tdd;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.Map;
 
 public class ExampleGeneratorTest {
     @Test
+    @Ignore
     public void whenGeneratorOk() {
         Generator generator = new ExampleGenerator();
         String template = "I am a ${name}, Who are ${subject}? ";
@@ -19,6 +21,7 @@ public class ExampleGeneratorTest {
         Assert.assertEquals(exp, rsl);
     }
 
+    @Ignore
     @Test(expected = IllegalArgumentException.class)
     public void whenMapHasNotKey() {
         Generator generator = new ExampleGenerator();
@@ -29,6 +32,7 @@ public class ExampleGeneratorTest {
         String rsl = generator.produce(template, map);
     }
 
+    @Ignore
     @Test(expected = IllegalArgumentException.class)
     public void whenMapHasExcessKey() {
         Generator generator = new ExampleGenerator();
