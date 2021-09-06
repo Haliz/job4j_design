@@ -58,7 +58,7 @@ public class ControlQualityTest {
     @Test
     public void whenToTrash() {
         LocalDate createDate = currentDate.minusMonths(1);
-        LocalDate expiryDate = createDate.minusDays(1);
+        LocalDate expiryDate = currentDate.minusDays(1);
         Food food = new Food("Продукт", createDate, expiryDate, 100);
         controlQuality.toStore(food);
         List<Food> exp = List.of(food);
