@@ -16,4 +16,9 @@ public class ControlQuality {
         }
     }
 
+    public void toStore(List<Food> foods) {
+        for (Food food : foods) {
+            toStore(food);
+        }
+    }
 }
