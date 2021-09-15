@@ -10,9 +10,7 @@ public class ParkingController {
     }
 
     public void toParking(Vehicles vehicle) {
-        parking.checkIn(vehicle);
+        parking.parking(vehicle);
     }
-    public void fromParking(Vehicles vehicle) {
-        parking.checkOut(vehicle);
-    }
+
 }
