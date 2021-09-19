@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.is;
 import org.junit.Ignore;
 import org.junit.Test;
 
-@Ignore
+
 public class CarParkingTest {
 
     @Test
