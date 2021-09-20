@@ -1,14 +1,14 @@
 package ru.job4j.lsp.parking;
 
 public abstract class Cars implements Vehicles {
-    int carSize = 1;
+    private int carSize = 1;
 
     @Override
     public int getSize() {
-        return getCarSize();
+        return carSize;
     }
 
-    public int getCarSize() {
-        return carSize;
+    public void setSize(int carSize) {
+        this.carSize = carSize;
     }
 }
