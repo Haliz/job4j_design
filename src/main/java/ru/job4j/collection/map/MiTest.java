@@ -23,8 +23,8 @@ public class MiTest {
         System.out.println(r);
 
 
-//        System.out.println(binary(1));
-//        System.out.println(binary(1 << 4));
-//        System.out.println(Integer.parseInt("00010000", 2));
+
+
+
     }
 }

@@ -23,7 +23,7 @@ public class GCDemo {
     public static void main(String[] args) {
         info();
         for (int i = 0; i < 220; i++) {
-//          new User(i, "N" + i);
+
             System.out.println(RamUsageEstimator.sizeOf(new User(i, "N" + i)));
         }
         info();

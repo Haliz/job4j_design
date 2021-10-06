@@ -27,16 +27,16 @@ public class Menu {
         }
     }
 
-//    public Item get(String name) throws Exception {
-//        for (Item item : list) {
-//            if (item.getName().equals(name)) {
-//                return item;
-//            } else {
-//                return get(name, item.getItems());
-//            }
-//        }
-//        throw new Exception("Задача не найдена");
-//    }
+
+
+
+
+
+
+
+
+
+
 
     private Item get(String name, List<Item> list) {
         List<Item> child = new ArrayList<>();

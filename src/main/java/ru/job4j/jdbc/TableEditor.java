@@ -86,18 +86,18 @@ public class TableEditor implements AutoCloseable {
             connection.close();
         }
     }
-// Этот метод сделал для проверки работы.
+
 
     public static void main(String[] args) throws Exception {
         try (FileInputStream fin = new FileInputStream("app1.properties")) {
             Properties map = new Properties();
             map.load(fin);
             TableEditor tableEditor = new TableEditor(map);
-//            tableEditor.createTable("garry");
-//            tableEditor.addColumn("garry", "First_name", "varchar(255)");
-//            tableEditor.renameColumn("garry", "First_name", "Last_name");
-//            tableEditor.dropColumn("garry", "Last_name");
-//            System.out.println(tableEditor.getScheme("garry"));
+
+
+
+
+
             tableEditor.dropTable("garry");
         }
     }

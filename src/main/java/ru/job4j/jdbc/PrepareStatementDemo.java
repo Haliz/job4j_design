@@ -88,8 +88,8 @@ public class PrepareStatementDemo {
         City city3 = new City(2, "lubertsy", 1000);
 
         PrepareStatementDemo demo = new PrepareStatementDemo();
-//        demo.insert(city1);
-//        demo.insert(city2);
+
+
         demo.update(city3);
 
     }

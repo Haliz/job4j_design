@@ -10,7 +10,7 @@ public class ResultFile {
                 for (int j : mas) {
                     int res = i * j;
                     out.write(Integer.toString(res).getBytes());
-                    out.write('\t'); // то же самое что и out.write("\t".getBytes());
+                    out.write('\t'); 
                 }
                 out.write('\n');
             }

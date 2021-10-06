@@ -18,7 +18,7 @@ public class Example1 {
     public static class IronDuck extends Duck {
         @Override
         public String fly() {
-            return null;   // Не умеет летать возвращает null. Так вообще нельзя делать может всплыть неизвестно где.
+            return null;
         }
     }
 }

@@ -15,12 +15,12 @@ public abstract class AbstractCache<K, V> {
 
     public V get(K key) {
         V result;
-        V value = cache.getOrDefault(key, new SoftReference<>(null)).get(); // Здесь создаю жесткую ссылку
+        V value = cache.getOrDefault(key, new SoftReference<>(null)).get();
         if (!this.cache.containsKey(key) || value == null) {
             result = load(key);
             put(key, result);
         } else {
-            result = value; // Результат по жесткой ссылке
+            result = value;
         }
         return result;
     }

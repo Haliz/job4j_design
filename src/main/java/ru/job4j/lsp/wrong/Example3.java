@@ -1,6 +1,5 @@
 package ru.job4j.lsp.wrong;
 
-// Классика (поскольку нигде не упоминалось)
 
 public class Example3 {
     public class Rectangle {

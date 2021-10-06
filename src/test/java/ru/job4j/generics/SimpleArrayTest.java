@@ -10,21 +10,7 @@ import static org.hamcrest.core.Is.is;
 
 public class SimpleArrayTest {
 
-//    public static void main(String[] args) {
-//        SimpleArray<Integer> arr = new SimpleArray<>(7);
-//        arr.add(1);
-//        arr.add(2);
-//        arr.add(3);
-//        arr.add(4);
-//        System.out.println(arr);
-//        arr.remove(1);
-//        System.out.println(arr);
-//
-//        Iterator<Integer> iterator = arr.iterator();
-//        while (iterator.hasNext()) {
-//            System.out.println(iterator.next());
-//        }
-//    }
+
 
     @Test
     public void whenAddAndGet() {

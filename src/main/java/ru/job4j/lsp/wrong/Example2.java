@@ -22,7 +22,7 @@ public class Example2 {
     public class VIPVisitor extends Visitor {
         @Override
         public void admit(Security security) {
-            System.out.println("Welcome"); //Забыли сделать проверку. Возможно не валидное состояние
+            System.out.println("Welcome");
         }
     }
 }
