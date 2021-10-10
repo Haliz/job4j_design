@@ -94,4 +94,34 @@ public class ControlQualityTest {
         assertThat(warehouse.getFoodList(), is(expWarehouse));
         assertThat(shop.getFoodList(), is(expShop));
     }
+
+    @Test
+    public void whenResort() {
+        LocalDate createDate1 = currentDate.minusDays(1);
+        LocalDate expiryDate1 = createDate1.plusYears(1);
+        Food freshFood = new Food("На склад", createDate1, expiryDate1, 100);
+        LocalDate createDate2 = currentDate.minusMonths(6);
+        LocalDate expiryDate2 = createDate2.plusYears(1);
+        Food shopFood1 = new Food("В магазин без скидки", createDate2, expiryDate2, 100);
+        LocalDate createDate3 = currentDate.minusMonths(1);
+        LocalDate expiryDate3 = currentDate.plusDays(1);
+        Food shopFood2 = new Food("В магазин со скидкой", createDate3, expiryDate3, 100);
+        LocalDate createDate4 = currentDate.minusMonths(1);
+        LocalDate expiryDate4 = currentDate.minusDays(1);
+        Food trashFood = new Food("На помойку", createDate4, expiryDate4, 100);
+        List<Food> foodList = List.of(freshFood, shopFood1, shopFood2, trashFood);
+
+        List<Food> expWarehouse = List.of(new Food("На склад", createDate1, expiryDate1, 100));
+        shopFood2.setDiscount(20);
+        List<Food> expShop = List.of(new Food("В магазин без скидки", createDate2, expiryDate2, 100),
+                shopFood2);
+        List<Food> expTrash = List.of(new Food("На помойку", createDate4, expiryDate4, 100));
+        for (Food food : foodList) {
+            warehouse.add(food);
+        }
+        controlQuality.resort();
+        assertThat(trash.getFoodList(), is(expTrash));
+        assertThat(warehouse.getFoodList(), is(expWarehouse));
+        assertThat(shop.getFoodList(), is(expShop));
+    }
 }

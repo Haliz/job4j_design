@@ -1,6 +1,7 @@
 package ru.job4j.lsp.store;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ControlQuality {
@@ -20,5 +21,14 @@ public class ControlQuality {
         for (Food food : foods) {
             toStore(food);
         }
+    }
+
+    public void resort() {
+        List<Food> foodList = new ArrayList<>();
+        for (Stores store : storesList) {
+            foodList.addAll(store.getFoodList());
+            store.clear();
+        }
+        toStore(foodList);
     }
 }
